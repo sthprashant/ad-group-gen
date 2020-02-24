@@ -11,6 +11,7 @@
             :items="apps"
             item-text="name"
             item-value="id"
+            label="Select Apps"
             deletable-chips
             small-chips
             dense
