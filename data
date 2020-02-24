@@ -1,0 +1,25 @@
+{
+            id: "AVC-AP2-QS-APPV-ACROBATPRO_LAD",
+            name:"Acrobat Pro",
+            delivery:"appv"
+          },
+          {
+            id: "AVC-AP2-QS-CORE-BARSPROD_LAD",
+            name:"BARS Production",
+            delivery:"sccm"
+          },
+          {
+            id: "AVC-AP2-QS-APPV-SAS_LAD",
+            name:"SAS",
+            delivery:"appv"
+          },
+          {
+            id: "AVC-AP2-QS-CORE-RSAT_LAD",
+            name:"Active Directory",
+            delivery:"sccm"
+          },
+          {
+            id: "AVC-AP2-QS-CORE-LINKSPROD_LAD",
+            name:"LINKS Production",
+            delivery:"sccm"
+          },
