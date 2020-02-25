@@ -1,11 +1,9 @@
 <template>
   <v-container>
     <v-row class="text-center">
-      <v-col cols="12">
-        <h1>AD Group Generator for AVC 2</h1>
-      </v-col>
-      <v-col>
+      <v-col> 
         <v-form>
+           <v-text-field placeholder="LAN ID"></v-text-field>
           <v-overflow-btn
             v-model="selectedApps"
             :items="apps"

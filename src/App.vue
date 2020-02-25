@@ -38,8 +38,15 @@
     </v-app-bar> -->
 
     <v-content>
-      <!-- <HelloWorld/> -->
-      <entry-form :apps="apps"/>
+      <v-row class="text-center">
+        <v-col cols="12">
+        <h1>AD Group Generator for AVC 2</h1>
+      </v-col>
+      <v-col>
+        <entry-form :apps="apps"/>
+      </v-col>
+      </v-row>
+      
     </v-content>
   </v-app>
 </template>
