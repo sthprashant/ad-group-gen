@@ -1,5 +1,4 @@
 <template>
-  <v-container>
     <div class="generated-table">
       <v-simple-table height="300">
         <thead>
@@ -11,13 +10,16 @@
               AD Groups
             </th>
             <th class="text-center">
-              Comments
+              Description
             </th>
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr>
-            <td>
+          <tr v-for="app in selectedApps" :key="app.id">
+            <td>ipss</td>
+            <td>{{app.id}}</td>
+            <td>{{app.name}}</td>
+            <!-- <td>
               ipss
             </td>
             <td>
@@ -47,16 +49,18 @@
             </td>
             <td>
               Test AD3
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </v-simple-table>
     </div>
-  </v-container>
 </template>
 
 <script>
 export default {
-  name: "generated-table"
+  name: "generated-table",
+  props:{
+    selectedApps: Array
+  }
 };
 </script>

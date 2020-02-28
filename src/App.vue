@@ -1,24 +1,17 @@
 <template>
   <v-app>
     <v-content>
-      <v-row>
-        <v-col v-model="selectedApps" cols="12" class="text-center">
-          {{selectedAppsForm}}
-        </v-col>
-        <v-col cols="12" class="text-center">
-          <h1>Test</h1>
-        </v-col>
-        <v-col cols="12">
-          <app-form
-            :apps="apps"
-            :selectedApps="selectedApps"
-            @send:apps="selectedAppsToObj"
-          />
-        </v-col>
-        <v-col cols="12">
-          <generated-table />
-        </v-col>
-      </v-row>
+      <h1 class="text-center">AD group generator</h1>
+      <v-container>
+        <!-- <v-col v-model="selectedApps" cols="12" class="text-center">
+          <ul v-for="(app,i) in filteredAppsForTable" :key="i">
+            <li>{{app}}</li>
+          </ul>
+          <p>{{filteredAppsForTable.length}}</p>
+        </v-col>-->
+          <app-form :apps="apps" @send:apps="selectedAppsToObj" />
+          <generated-table :selectedApps="filteredAppsForTable" />
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -34,10 +27,26 @@ export default {
     GeneratedTable
   },
   methods: {
-    selectedAppsToObj(selectedApps){
-      this.selectedAppsForm = [...this.selectedAppsForm,selectedApps[selectedApps.length -1]];
-      
+    selectedAppsToObj(selectedApps) {
+      this.filteredAppsForTable = [];
+      for (var i = 0; i < selectedApps.length; i++) {
+        for (var j = 0; j < this.apps.length; j++) {
+          if (selectedApps[i] === this.apps[j].id) {
+            this.filteredAppsForTable = [
+              ...this.filteredAppsForTable,
+              this.apps[j]
+            ];
+            console.log(this.filteredAppsForTable);
+          }
+        }
+      }
+      //}
     },
+    returnLastSelected(selectedApps) {
+      selectedApps.map(() => {
+        return "test";
+      });
+    }
   },
   data: () => ({
     selectedAppsForm: [],
@@ -72,3 +81,11 @@ export default {
   })
 };
 </script>
+
+<style  scoped>
+h1{
+  background:red;
+  margin: 0;
+  padding: 0;
+}
+</style>
