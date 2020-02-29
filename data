@@ -23,3 +23,23 @@
             name:"LINKS Production",
             delivery:"sccm"
           },
+
+
+
+
+
+           {
+          name: "base device",
+          group: "base device group",
+          personalisation: "base device personlaisation"
+        },
+        {
+          name: "premium",
+          group: "prem device group",
+          personalisation: "prem plus device personlaisation"
+        },
+        {
+          name: "prem plus",
+          group: "prem plus device group",
+          personalisation: "prem plus device personlaisation"
+        },

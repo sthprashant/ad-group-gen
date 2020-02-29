@@ -3,14 +3,17 @@
     <v-content>
       <h1 class="text-center">AD group generator</h1>
       <v-container>
-        <!-- <v-col v-model="selectedApps" cols="12" class="text-center">
-          <ul v-for="(app,i) in filteredAppsForTable" :key="i">
-            <li>{{app}}</li>
-          </ul>
-          <p>{{filteredAppsForTable.length}}</p>
-        </v-col>-->
-          <app-form :apps="apps" @send:apps="selectedAppsToObj" />
-          <generated-table :selectedApps="filteredAppsForTable" />
+        <v-row justify="center">
+          <v-col>
+            <app-form :apps="apps" @send:apps="selectedAppsToObj" @send:lanId="checkLanId" />
+
+            <generated-table
+              :selectedApps="filteredAppsForTable"
+              :lanId="this.userId"
+              :deviceType="deviceType"
+            />
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
   </v-app>
@@ -42,50 +45,78 @@ export default {
       }
       //}
     },
-    returnLastSelected(selectedApps) {
-      selectedApps.map(() => {
-        return "test";
-      });
+    checkLanId(lanId) {
+      console.log(lanId);
+      this.userId = lanId;
+      console.log("userid = " + this.userId);
+    },
+    clearData() {
+      this.userId = "";
+      this.filteredAppsForTable = [];
     }
   },
-  data: () => ({
-    selectedAppsForm: [],
-    filteredAppsForTable: [],
-    apps: [
-      {
-        id: "AVC-AP2-QS-APPV-ACROBATPRO_LAD",
-        name: "Acrobat Pro",
-        delivery: "appv"
-      },
-      {
-        id: "AVC-AP2-QS-CORE-BARSPROD_LAD",
-        name: "BARS Production",
-        delivery: "sccm"
-      },
-      {
-        id: "AVC-AP2-QS-APPV-SAS_LAD",
-        name: "SAS",
-        delivery: "appv"
-      },
-      {
-        id: "AVC-AP2-QS-CORE-RSAT_LAD",
-        name: "Active Directory",
-        delivery: "sccm"
-      },
-      {
-        id: "AVC-AP2-QS-CORE-LINKSPROD_LAD",
-        name: "LINKS Production",
-        delivery: "sccm"
-      }
-    ]
-  })
+
+  data() {
+    return {
+      filteredAppsForTable: [],
+      deviceType:
+        {
+          base: {
+            name: "base device",
+            group: "base device group",
+            personalisation: "base device personlaisation"
+          },
+          prem: {
+            name: "premium",
+            group: "prem device group",
+            personalisation: "prem plus device personlaisation"
+          },
+          premplus: {
+            name: "prem plus",
+            group: "prem plus device group",
+            personalisation: "prem plus device personlaisation"
+          }
+        },
+      apps: [
+        {
+          id: "AVC-AP2-QS-APPV-ACROBATPRO_LAD",
+          name: "Acrobat Pro",
+          delivery: "appv"
+        },
+        {
+          id: "AVC-AP2-QS-CORE-BARSPROD_LAD",
+          name: "BARS Production",
+          delivery: "sccm"
+        },
+        {
+          id: "AVC-AP2-QS-APPV-SAS_LAD",
+          name: "SAS",
+          delivery: "appv"
+        },
+        {
+          id: "AVC-AP2-QS-CORE-RSAT_LAD",
+          name: "Active Directory",
+          delivery: "sccm"
+        },
+        {
+          id: "AVC-AP2-QS-CORE-LINKSPROD_LAD",
+          name: "LINKS Production",
+          delivery: "sccm"
+        }
+      ],
+      userId: ""
+    };
+  }
 };
 </script>
 
 <style  scoped>
-h1{
-  background:red;
+/* h1 {
+  background: red;
   margin: 0;
   padding: 0;
+} */
+h1 {
+  color: #1976d2;
 }
 </style>
