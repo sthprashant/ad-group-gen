@@ -12,12 +12,20 @@
           </thead>
           <tbody class="text-center">
             
-            <tr v-for="app in selectedApps" :key="app.id">
-              
+            <template>
+              <tr>
+                <td>{{lanId}}</td>
+                <td v-if="app.id === 'sccm'"></td>
+                <td>test</td>
+              </tr>
+             
+              <tr v-for="app in selectedApps" :key="app.id">
               <td>{{lanId}}</td>
               <td>{{app.id}}</td>
               <td>{{app.name}}</td>
             </tr>
+            </template>
+            
           </tbody>
         </v-simple-table>
       </div>
@@ -32,6 +40,13 @@ export default {
     selectedApps: Array,
     lanId: String,
     deviceType:Object,
+    device:"Base"
+  },
+  methods:{
+    checkDeviceType(){
+      this.device
+      this.deviceType.map((type)=>{})
+    }
   }
 };
 </script>

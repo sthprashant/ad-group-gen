@@ -12,8 +12,6 @@
           item-text="name"
           item-value="id"
           label="Select Apps"
-          deletable-chips
-          small-chips
           multiple
           editable
           @change="sendSelectedApps"
