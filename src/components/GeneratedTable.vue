@@ -14,18 +14,18 @@
             <template>
               <tr v-if="checkDeviceType === this.deviceType.prem">
                 <td>{{ lanId }}</td>
-                <td>{{ this.deviceType.prem.group}}</td>
-                <td>{{this.deviceType.prem.name}}</td>
+                <td>{{ this.deviceType.prem.group }}</td>
+                <td>{{ this.deviceType.prem.name }}</td>
               </tr>
               <tr v-else>
                 <td>{{ lanId }}</td>
-                <td>{{ this.deviceType.base.group}}</td>
-                <td>{{this.deviceType.base.name}}</td>
+                <td>{{ this.deviceType.base.group }}</td>
+                <td>{{ this.deviceType.base.name }}</td>
               </tr>
               <tr>
                 <td>{{ lanId }}</td>
-                <td>{{this.baseApp.group}}</td>
-                <td>{{this.baseApp.name}}</td>
+                <td>{{ this.baseApp.group }}</td>
+                <td>{{ this.baseApp.name }}</td>
               </tr>
               <tr v-for="app in selectedApps" :key="app.id">
                 <td>{{ lanId }}</td>
@@ -47,16 +47,10 @@ export default {
     selectedApps: Array,
     lanId: String,
     deviceType: Object,
-    baseApp: Object,
+    baseApp: Object
   },
-  // data() {
-  //   return {
-  //     currentDevice:checkDeviceType,
-  //   }
-  // },
   computed: {
-    checkDeviceType: function(){
-    
+    checkDeviceType: function() {
       var deviceGroup = this.deviceType.base;
       for (var i = 0; i < this.selectedApps.length; i++) {
         if (this.selectedApps[i].delivery === "sccm") {

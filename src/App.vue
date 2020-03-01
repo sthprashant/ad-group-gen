@@ -5,7 +5,11 @@
       <v-container>
         <v-row justify="center">
           <v-col>
-            <app-form :apps="apps" @send:apps="selectedAppsToObj" @send:lanId="checkLanId" />
+            <app-form
+              :apps="apps"
+              @send:apps="selectedAppsToObj"
+              @send:lanId="checkLanId"
+            />
 
             <generated-table
               :selectedApps="filteredAppsForTable"
@@ -47,13 +51,13 @@ export default {
       //}
     },
     checkLanId(lanId) {
-      if(lanId === ""){
-        this.userId="";
+      if (lanId === "") {
+        this.userId = "";
+      } else {
+        console.log(lanId);
+        this.userId = lanId;
+        console.log("userid = " + this.userId);
       }
-      else{
-      console.log(lanId);
-      this.userId = lanId;
-      console.log("userid = " + this.userId);}
     },
     clearData() {
       this.userId = "";
@@ -64,28 +68,27 @@ export default {
   data() {
     return {
       filteredAppsForTable: [],
-      baseApp:{
+      baseApp: {
         group: "base app group",
-        name: "base apps",
+        name: "base apps"
       },
-      deviceType:
-        {
-          base: {
-            name: "base",
-            group: "base device group",
-            personalisation: "base device personlaisation"
-          },
-          prem: {
-            name: "premium",
-            group: "prem device group",
-            personalisation: "prem plus device personlaisation"
-          },
-          premplus: {
-            name: "premplus",
-            group: "prem plus device group",
-            personalisation: "prem plus device personlaisation"
-          }
+      deviceType: {
+        base: {
+          name: "base",
+          group: "base device group",
+          personalisation: "base device personlaisation"
         },
+        prem: {
+          name: "premium",
+          group: "prem device group",
+          personalisation: "prem plus device personlaisation"
+        },
+        premplus: {
+          name: "premplus",
+          group: "prem plus device group",
+          personalisation: "prem plus device personlaisation"
+        }
+      },
       apps: [
         {
           id: "AVC-AP2-QS-APPV-ACROBATPRO_LAD",
@@ -119,12 +122,7 @@ export default {
 };
 </script>
 
-<style  scoped>
-/* h1 {
-  background: red;
-  margin: 0;
-  padding: 0;
-} */
+<style scoped>
 h1 {
   color: #1976d2;
 }
