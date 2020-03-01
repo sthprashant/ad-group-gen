@@ -50,7 +50,6 @@ export default {
       this.$emit("send:apps", this.selectedApps);
     },
     sendLanId() {
-      if(this.lanId !== "")
       this.$emit("send:lanId", this.lanId);
     },
     clearData(){

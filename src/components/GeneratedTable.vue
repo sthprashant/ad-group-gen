@@ -11,21 +11,28 @@
             </tr>
           </thead>
           <tbody class="text-center">
-            
             <template>
-              <tr>
-                <td>{{lanId}}</td>
-                <td v-if="app.id === 'sccm'"></td>
-                <td>test</td>
+              <tr v-if="checkDeviceType === this.deviceType.prem">
+                <td>{{ lanId }}</td>
+                <td>{{ this.deviceType.prem.group}}</td>
+                <td>{{this.deviceType.prem.name}}</td>
               </tr>
-             
+              <tr v-else>
+                <td>{{ lanId }}</td>
+                <td>{{ this.deviceType.base.group}}</td>
+                <td>{{this.deviceType.base.name}}</td>
+              </tr>
+              <tr>
+                <td>{{ lanId }}</td>
+                <td>{{this.baseApp.group}}</td>
+                <td>{{this.baseApp.name}}</td>
+              </tr>
               <tr v-for="app in selectedApps" :key="app.id">
-              <td>{{lanId}}</td>
-              <td>{{app.id}}</td>
-              <td>{{app.name}}</td>
-            </tr>
+                <td>{{ lanId }}</td>
+                <td>{{ app.id }}</td>
+                <td>{{ app.name }}</td>
+              </tr>
             </template>
-            
           </tbody>
         </v-simple-table>
       </div>
@@ -39,13 +46,26 @@ export default {
   props: {
     selectedApps: Array,
     lanId: String,
-    deviceType:Object,
-    device:"Base"
+    deviceType: Object,
+    baseApp: Object,
   },
-  methods:{
-    checkDeviceType(){
-      this.device
-      this.deviceType.map((type)=>{})
+  // data() {
+  //   return {
+  //     currentDevice:checkDeviceType,
+  //   }
+  // },
+  computed: {
+    checkDeviceType: function(){
+    
+      var deviceGroup = this.deviceType.base;
+      for (var i = 0; i < this.selectedApps.length; i++) {
+        if (this.selectedApps[i].delivery === "sccm") {
+          deviceGroup = this.deviceType.prem;
+          break;
+        }
+      }
+      console.log(deviceGroup);
+      return deviceGroup;
     }
   }
 };

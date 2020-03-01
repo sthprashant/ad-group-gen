@@ -9,8 +9,9 @@
 
             <generated-table
               :selectedApps="filteredAppsForTable"
-              :lanId="this.userId"
+              :lanId="userId"
               :deviceType="deviceType"
+              :baseApp="baseApp"
             />
           </v-col>
         </v-row>
@@ -46,9 +47,13 @@ export default {
       //}
     },
     checkLanId(lanId) {
+      if(lanId === ""){
+        this.userId="";
+      }
+      else{
       console.log(lanId);
       this.userId = lanId;
-      console.log("userid = " + this.userId);
+      console.log("userid = " + this.userId);}
     },
     clearData() {
       this.userId = "";
@@ -59,10 +64,14 @@ export default {
   data() {
     return {
       filteredAppsForTable: [],
+      baseApp:{
+        group: "base app group",
+        name: "base apps",
+      },
       deviceType:
         {
           base: {
-            name: "base device",
+            name: "base",
             group: "base device group",
             personalisation: "base device personlaisation"
           },
@@ -72,7 +81,7 @@ export default {
             personalisation: "prem plus device personlaisation"
           },
           premplus: {
-            name: "prem plus",
+            name: "premplus",
             group: "prem plus device group",
             personalisation: "prem plus device personlaisation"
           }
