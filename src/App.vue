@@ -9,6 +9,7 @@
               :apps="apps"
               @send:apps="selectedAppsToObj"
               @send:lanId="checkLanId"
+              @send:itSupport="checkSupportRole"
             />
 
             <generated-table
@@ -16,6 +17,7 @@
               :lanId="userId"
               :deviceType="deviceType"
               :baseApp="baseApp"
+              :itSupport="supportRole"
             />
           </v-col>
         </v-row>
@@ -62,12 +64,20 @@ export default {
     clearData() {
       this.userId = "";
       this.filteredAppsForTable = [];
+    },
+    checkSupportRole(itSupport){
+      this.supportRole = itSupport;
+      //console.log(this.itSupport);
     }
+  },
+  watch:{
+    
   },
 
   data() {
     return {
       filteredAppsForTable: [],
+      supportRole:false,
       baseApp: {
         group: "base app group",
         name: "base apps"

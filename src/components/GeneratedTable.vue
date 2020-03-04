@@ -12,7 +12,12 @@
           </thead>
           <tbody class="text-center">
             <template>
-              <tr v-if="checkDeviceType === this.deviceType.prem && lanId !== ''">
+              <tr v-if="checkDeviceType === this.deviceType.premplus && lanId !== ''">
+                <td>{{ lanId }}</td>
+                <td>{{ this.deviceType.premplus.group }}</td>
+                <td>{{ this.deviceType.premplus.name }}</td>
+              </tr>
+              <tr v-else-if="checkDeviceType === this.deviceType.prem && lanId !== ''">
                 <td>{{ lanId }}</td>
                 <td>{{ this.deviceType.prem.group }}</td>
                 <td>{{ this.deviceType.prem.name }}</td>
@@ -22,6 +27,7 @@
                 <td>{{ this.deviceType.base.group }}</td>
                 <td>{{ this.deviceType.base.name }}</td>
               </tr>
+
               <tr v-if="lanId !== ''">
                 <td>{{ lanId }}</td>
                 <td>{{ this.baseApp.group }}</td>
@@ -47,20 +53,35 @@ export default {
     selectedApps: Array,
     lanId: String,
     deviceType: Object,
-    baseApp: Object
+    baseApp: Object,
+    itSupport: Boolean
   },
   computed: {
     checkDeviceType: function() {
       var deviceGroup = this.deviceType.base;
+      if (this.itSupport === true) {
+        console.log("if statement " + this.itSupport);
+        return this.deviceType.premplus;
+      }
       for (var i = 0; i < this.selectedApps.length; i++) {
         if (this.selectedApps[i].delivery === "sccm") {
           deviceGroup = this.deviceType.prem;
           break;
         }
       }
-      console.log(deviceGroup);
+      //console.log(deviceGroup);
+      console.log("from table " + this.itSupport);
       return deviceGroup;
     }
+    // watch:{
+    //   checkSupportTole: function(itSupport){
+    //     console.log("from table" + itSupport);
+    //   }
+    // }
+    // checkSupportRole: function(itSupport){
+    //   this.itSupport = itSupport;
+    //   return this.itSupport;
+    // }
   }
 };
 </script>

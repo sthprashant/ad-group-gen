@@ -25,7 +25,7 @@
         rounded
         height-details="300px"
       >
-      <v-checkbox></v-checkbox>
+      
         <template v-slot:selection="{ item, index }">
           <v-chip v-if="index === 0">
             <span>{{ item.name }}</span>
@@ -35,6 +35,11 @@
           >
         </template>
       </v-overflow-btn>
+      <v-row justify="center">
+        <v-col>
+          <v-checkbox v-model="itSupport" label="IT Support" @change="sendCheckBoxStatus"></v-checkbox>
+        </v-col>
+      </v-row>
       <v-row justify="center">
         <v-col class="text-center" cols="12" sm="4">
           <div class="my-2">
@@ -50,7 +55,8 @@
 export default {
   name: "app-form",
   props: {
-    apps: Array
+    apps: Array,
+    
   },
   methods: {
     sendSelectedApps() {
@@ -60,6 +66,10 @@ export default {
     sendLanId() {
       this.$emit("send:lanId", this.lanId);
       this.$emit("send:apps", this.selectedApps);
+    },
+    sendCheckBoxStatus() {
+      this.$emit("send:itSupport", this.itSupport);
+      
     },
     clearData() {
       this.lanId = "";
@@ -71,7 +81,8 @@ export default {
   data() {
     return {
       selectedApps: [],
-      lanId: ""
+      lanId: "",
+      itSupport:false,
     };
   }
 };
