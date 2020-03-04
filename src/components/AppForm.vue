@@ -25,6 +25,7 @@
         rounded
         height-details="300px"
       >
+      <v-checkbox></v-checkbox>
         <template v-slot:selection="{ item, index }">
           <v-chip v-if="index === 0">
             <span>{{ item.name }}</span>
@@ -53,10 +54,12 @@ export default {
   },
   methods: {
     sendSelectedApps() {
+      if(this.lanId !== '')
       this.$emit("send:apps", this.selectedApps);
     },
     sendLanId() {
       this.$emit("send:lanId", this.lanId);
+      this.$emit("send:apps", this.selectedApps);
     },
     clearData() {
       this.lanId = "";

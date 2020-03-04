@@ -12,17 +12,17 @@
           </thead>
           <tbody class="text-center">
             <template>
-              <tr v-if="checkDeviceType === this.deviceType.prem">
+              <tr v-if="checkDeviceType === this.deviceType.prem && lanId !== ''">
                 <td>{{ lanId }}</td>
                 <td>{{ this.deviceType.prem.group }}</td>
                 <td>{{ this.deviceType.prem.name }}</td>
               </tr>
-              <tr v-else>
+              <tr v-else-if="checkDeviceType === this.deviceType.base && lanId !== ''">
                 <td>{{ lanId }}</td>
                 <td>{{ this.deviceType.base.group }}</td>
                 <td>{{ this.deviceType.base.name }}</td>
               </tr>
-              <tr>
+              <tr v-if="lanId !== ''">
                 <td>{{ lanId }}</td>
                 <td>{{ this.baseApp.group }}</td>
                 <td>{{ this.baseApp.name }}</td>
