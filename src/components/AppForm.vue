@@ -69,6 +69,7 @@ export default {
       this.selectedApps = [];
       this.sendSelectedApps();
       this.sendLanId();
+      this.itSupport = false;
     }
   },
   data() {
