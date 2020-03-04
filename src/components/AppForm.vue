@@ -31,7 +31,7 @@
       </v-overflow-btn>
 
       <v-row justify="center">
-        <v-col class="text-center" cols="12" sm="4" md="4">
+        <v-col class="text-center" cols="12" sm="3">
           <v-checkbox v-model="itSupport" label="IT Support" @change="sendCheckBoxStatus"></v-checkbox>
         </v-col>
       </v-row>
